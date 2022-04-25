@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from './components/container';
-import Column from './components/column';
+import Column from './components/column/column';
 
 const DeskWrapper = styled.div`
   border-radius: 16px;

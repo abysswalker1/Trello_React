@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FelxContainer = styled.div`
-    display: flex;
+    display: ${props => props.display || 'flex'};
     flex-direction: ${props => props.column ? 'column' : 'row'};
     justify-content: ${props => props.justify || 'center'};
     align-items: ${props => props.align || 'center'};
