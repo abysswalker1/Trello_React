@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Container from '../container';
 import styled from 'styled-components';
-import Button from '../button';
+import AcceptButton from '../acceptButton';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const AddCardButton = styled.button`
@@ -38,11 +38,11 @@ const AddCard = (props) => {
       <Container display={!active ? 'none' : 'block'}>
         <CardName onChange={(e) => setName(e.target.value)} />
         <Container justify="flex-start">
-          <Button func={props.func} value={name}>
+          <AcceptButton onClick={() => props.func(name)}>
             Добавить
-          </Button>
+          </AcceptButton>
           <button onClick={() => openForm(false)}>
-            <i className="bi bi-x-lg"></i>
+            <i className="bi bi-x-lg" />
           </button>
         </Container>
       </Container>

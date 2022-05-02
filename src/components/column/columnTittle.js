@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../container'
 import styled from 'styled-components';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Button from '../button'
+import AcceptButton from '../acceptButton'
 
 const TittleBtn = styled.button`
     padding : 2px 10px;
@@ -11,33 +11,33 @@ const TittleBtn = styled.button`
     border-radius: 2px;
 ` 
 
-const ColumnTittle = (props) => {
-    const [tittle, setTittle] = React.useState(props.tittle)
-    const [changing, setChanging] = React.useState(false)
+let nextTittle;
 
-    const handleInput = (e) => {
-        if (e.target.value) {
-            setTittle(e.target.value)
-        } 
-    }
+const ColumnTittle = ({tittle, tittleFunc}) => {
+    const [changing, setChanging] = React.useState(false)
     
     const changeForm = (value) => {
         setChanging(value)
     }
 
+    const changeTittle = () => {
+        tittleFunc(nextTittle)
+        changeForm(false)
+    }
+
     return (
         <div>
-            <Container height = '20px' justify="space-between" display = {changing ? 'none' : 'flex'}>
+            <Container height = '20px' justify="space-between" margin='0 0 10px 0   ' display = {changing ? 'none' : 'flex'}>
                 <p>{tittle}</p>
                 <button onClick={() => changeForm(true)}>
                     <i className="bi bi-pencil-square"></i>
                 </button>
             </Container>
             <Container height = '20px' justify="flex-start" display = {changing ? 'flex' : 'none'}>
-                <input placeholder = {tittle} onChange={(e) => handleInput(e)}/>
-                <Button func = {changeForm} value = {false}>
+                <input onChange={(e) => nextTittle = e.target.value}/>
+                <AcceptButton value = {false} onClick={changeTittle} padding='3px 5px'>
                     <i className="bi bi-check"></i>
-                </Button>
+                </AcceptButton>
             </Container>
         </div>
     );
